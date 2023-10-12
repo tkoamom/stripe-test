@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('slug');
+            $table->string('stripe_plan');
+            $table->integer('price');
+            $table->string('description');
             $table->timestamps();
         });
     }
