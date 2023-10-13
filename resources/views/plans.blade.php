@@ -38,7 +38,11 @@
                                 <del>Sed ut perspiciatis</del>
                             </li>
                         </ul>
-                        <a href="{{ route('plans.show', $plan->id) }}" class="btn btn-primary btn-block shadow rounded-pill">Buy Now</a>
+                        @if(auth()->user()->subscriptionCheck($plan))
+                            <a href="{{ route('plans.show', $plan->id) }}" class="btn btn-primary btn-block disabled shadow rounded-pill">You already subscribed</a>
+                        @else
+                            <a href="{{ route('plans.show', $plan->id) }}" class="btn btn-primary btn-block shadow rounded-pill">Buy Now</a>
+                        @endif
                     </div>
                 </div>
             @endforeach
