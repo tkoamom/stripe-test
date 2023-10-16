@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\StripeWebhookController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,6 @@ Route::middleware('auth')->group(function (){
     Route::post('subscription', [PlanController::class, 'subscription'])->name('subscription.create');
     Route::post('subscription/cansel', [PlanController::class, 'subscriptionCansel'])->name('subscription.cansel');
 });
+
+Route::post('stripe/webhook/invoice-created', [StripeWebhookController::class, 'handleInvoiceCreated']);
+Route::post('stripe/webhook/invoice-succeed', [StripeWebhookController::class, 'handleInvoicePaymentSucceeded']);

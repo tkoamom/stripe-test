@@ -38,7 +38,7 @@
                                 <del>Sed ut perspiciatis</del>
                             </li>
                         </ul>
-                        @if(auth()->user()->subscription())
+                        @if(auth()->user()->subscription($plan->id) && auth()->user()->subscription($plan->id)->stripe_status == 'active')
                             <a href="{{ route('plans.show', $plan->id) }}" class="btn btn-primary btn-block disabled shadow rounded-pill">You already subscribed</a>
                         @else
                             <a href="{{ route('plans.show', $plan->id) }}" class="btn btn-primary btn-block shadow rounded-pill">Buy Now</a>
