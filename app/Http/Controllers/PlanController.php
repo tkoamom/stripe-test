@@ -31,4 +31,15 @@ class PlanController extends Controller
 
         return view('subscription-success');
     }
+
+    public function subscriptionCansel(Request $request)
+    {
+        if ($request->subscriptionName){
+            auth()->user()->subscription($request->subscriptionName)->cancelNow();
+            return 'subscription canceled';
+        }
+        else{
+            return 'wrong request';
+        }
+    }
 }

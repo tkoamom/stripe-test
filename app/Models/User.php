@@ -43,13 +43,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function subscriptionCheck(Plan $plan){
-        if (DB::table('subscriptions')->where('user_id', $this->id)->where('stripe_price', $plan->stripe_plan)->first()){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
 }

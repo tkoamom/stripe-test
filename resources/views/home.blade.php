@@ -23,7 +23,7 @@
                                 <td>{{$subscription->plan->name}}</td>
                                 <td>{{$subscription->plan->price}}</td>
                                 <td>{{$subscription->plan->created_at}}</td>
-                                <td><button id="unsubscribe" type="button" class="btn btn-danger">Unsubscribe</button></td>
+                                <td><button id="unsubscribe" type="button" class="btn btn-danger" data-name="{{$subscription->name}}">Unsubscribe</button></td>
                             </tr>
                         @else
                             <tr>
@@ -40,7 +40,23 @@
 
 <script>
     $('#unsubscribe').click(function (){
-        console.log('111')
+        let subscriptionName = $(this).data('name');
+        $.ajax({
+            url: 'subscription/cansel',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                'subscriptionName' : subscriptionName
+            },
+            type: 'POST',
+            success: function (response)
+            {
+                console.log(response);
+            },
+            error: function (response)
+            {
+                console.log(response);
+            }
+        })
     });
 </script>
 @endsection

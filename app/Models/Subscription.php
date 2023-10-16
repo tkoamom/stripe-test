@@ -10,7 +10,7 @@ class Subscription extends Model
     use HasFactory;
 
     public function getUserSubscription(User $user){
-        return $this->where('user_id', $user->id)->firstOrFail();
+        return $this->where('user_id', $user->id)->where('stripe_status', 'active')->first();
     }
 
     public function plan(){

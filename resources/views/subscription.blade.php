@@ -74,7 +74,8 @@
             )
 
             if(error) {
-                cardBtn.disable = false
+                alert(error.message);
+                cardBtn.disabled = false
             } else {
                 let token = document.createElement('input')
                 token.setAttribute('type', 'hidden')
