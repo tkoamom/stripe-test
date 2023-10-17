@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $subscription = new Subscription;
-        return view('home', ['subscription' => $subscription->getUserSubscription(auth()->user())]);
+        $invoices = auth()->user()->invoices()->get();
+        return view('home', ['subscription' => $subscription->getUserSubscription(auth()->user()), 'invoices' => $invoices]);
     }
 }

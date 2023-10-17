@@ -34,6 +34,38 @@
                     </table>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header">Last Invoices</div>
+
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Stripe_id</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @if ($invoices)
+                            @foreach($invoices as $invoice)
+                                <tr>
+                                    <td>{{$invoice->stripe_id}}</td>
+                                    <td>{{$invoice->total}}</td>
+                                    <td>{{$invoice->status}}</td>
+                                    <td>{{$invoice->created_at}}</td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td>none</td>
+                            </tr>
+                        @endif
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

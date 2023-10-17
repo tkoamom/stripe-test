@@ -13,6 +13,7 @@ class StripeWebhookController extends WebhookController
     {
         $data = $payload['data']['object'];
         $user = User::where('stripe_id', $data['customer'])->first();
+        dd($user);
 
         if ($user){
             Invoice::create([
