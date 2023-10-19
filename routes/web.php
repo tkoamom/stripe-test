@@ -31,5 +31,4 @@ Route::middleware('auth')->group(function (){
     Route::post('subscription/cansel', [PlanController::class, 'subscriptionCansel'])->name('subscription.cansel');
 });
 
-Route::post('stripe/webhook/invoice-created', [StripeWebhookController::class, 'handleInvoiceCreated']);
-Route::post('stripe/webhook/invoice-succeed', [StripeWebhookController::class, 'handleInvoicePaymentSucceeded']);
+Route::post('webhook/stripe', [StripeWebhookController::class, 'handleWebhook']);
